@@ -6,7 +6,8 @@ const AddMovie = ({ onAddMovie }) => {
     description: '',
     posterURL: '',
     rating: '',
-    year: ''
+    year: '',
+    trailerLink: ''
   });
 
   const handleChange = (e) => {
@@ -19,36 +20,38 @@ const AddMovie = ({ onAddMovie }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     if (!formData.title || !formData.description || !formData.rating) {
-      alert('Please fill in all required fields!');
+      alert('Please fill in all required fields');
       return;
     }
     
     if (formData.rating < 0 || formData.rating > 10) {
-      alert('Rating must be between 0 and 10!');
+      alert('Rating must be between 0 and 10');
       return;
     }
-
+    
     const newMovie = {
       title: formData.title,
       description: formData.description,
       posterURL: formData.posterURL || `https://via.placeholder.com/300x450/6C5CE7/FFFFFF?text=${encodeURIComponent(formData.title)}`,
       rating: formData.rating,
-      year: formData.year || new Date().getFullYear()
+      year: formData.year || new Date().getFullYear(),
+      trailerLink: formData.trailerLink
     };
-
+    
     onAddMovie(newMovie);
-
+    
     setFormData({
       title: '',
       description: '',
       posterURL: '',
       rating: '',
-      year: ''
+      year: '',
+      trailerLink: ''
     });
     
-    alert('Movie added successfully!');
+    alert('Movie added successfully');
   };
 
   return (
@@ -58,7 +61,7 @@ const AddMovie = ({ onAddMovie }) => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">
-            Title * <span className="required">(required)</span>
+            Title
           </label>
           <input
             type="text"
@@ -73,7 +76,7 @@ const AddMovie = ({ onAddMovie }) => {
         
         <div className="form-group">
           <label htmlFor="description">
-            Description * <span className="required">(required)</span>
+            Description
           </label>
           <textarea
             id="description"
@@ -89,7 +92,7 @@ const AddMovie = ({ onAddMovie }) => {
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="rating">
-              Rating (0-10) * <span className="required">(required)</span>
+              Rating (0-10)
             </label>
             <input
               type="number"
@@ -130,7 +133,19 @@ const AddMovie = ({ onAddMovie }) => {
             onChange={handleChange}
             placeholder="https://example.com/poster.jpg"
           />
-          <small>Leave empty for default placeholder</small>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="trailerLink">Trailer Embed Link</label>
+          <input
+            type="url"
+            id="trailerLink"
+            name="trailerLink"
+            value={formData.trailerLink}
+            onChange={handleChange}
+            placeholder="https://www.youtube.com/embed/VIDEO_ID"
+          />
+          <small>YouTube embed link format: https://www.youtube.com/embed/VIDEO_ID</small>
         </div>
         
         <button type="submit" className="submit-btn">

@@ -7,7 +7,6 @@ const Filter = ({ titleFilter, ratingFilter, onTitleChange, onRatingChange }) =>
       
       <div className="filter-group">
         <label htmlFor="title-filter">
-          <span className="filter-icon">🎬</span>
           Filter by Title:
         </label>
         <input
@@ -21,7 +20,6 @@ const Filter = ({ titleFilter, ratingFilter, onTitleChange, onRatingChange }) =>
       
       <div className="filter-group">
         <label htmlFor="rating-filter">
-          <span className="filter-icon">⭐</span>
           Minimum Rating: <strong>{ratingFilter.toFixed(1)}</strong>
         </label>
         <input
@@ -44,13 +42,13 @@ const Filter = ({ titleFilter, ratingFilter, onTitleChange, onRatingChange }) =>
         {titleFilter && (
           <span className="filter-tag">
             Title contains: "{titleFilter}"
-            <button onClick={() => onTitleChange('')}>✕</button>
+            <button onClick={() => onTitleChange('')}>X</button>
           </span>
         )}
         {ratingFilter > 0 && (
           <span className="filter-tag">
             Min rating: {ratingFilter}
-            <button onClick={() => onRatingChange(0)}>✕</button>
+            <button onClick={() => onRatingChange(0)}>X</button>
           </span>
         )}
       </div>

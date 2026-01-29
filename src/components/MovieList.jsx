@@ -5,7 +5,7 @@ const MovieList = ({ movies }) => {
   if (movies.length === 0) {
     return (
       <div className="no-movies">
-        <h3>No movies found!</h3>
+        <h3>No movies found</h3>
         <p>Try adjusting your filters or add a new movie.</p>
       </div>
     );
